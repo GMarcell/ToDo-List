@@ -16,12 +16,13 @@ import com.github.gmarcell.todolist.data.Does
 import com.github.gmarcell.todolist.adapters.todoAdapter
 import com.github.gmarcell.todolist.viewmodels.DoesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val ADD_NOTE_REQUEST = 1
-        const val EDIT_NOTE_REQUEST = 2
+        const val ADD_DOES_REQUEST = 1
+        const val EDIT_DOES_REQUEST = 2
     }
 
     private lateinit var doesViewModel: DoesViewModel
@@ -30,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        buttonAddNote.setOnClickListener {
+        buttonAddDoes.setOnClickListener {
             startActivityForResult(
                 Intent(this, AddEditDoesActivity::class.java),
-                ADD_NOTE_REQUEST
+                ADD_DOES_REQUEST
             )
         }
 
@@ -46,11 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         doesViewModel = ViewModelProviders.of(this).get(DoesViewModel::class.java)
 
-        doesViewModel.getAllNotes().observe(this, Observer<List<Does>> {
+        doesViewModel.getAllDoes().observe(this, Observer<List<Does>> {
             adapter.submitList(it)
         })
 
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT)) {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT).or(ItemTouchHelper.UP).or(ItemTouchHelper.DOWN)) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                doesViewModel.delete(adapter.getNoteAt(viewHolder.adapterPosition))
+                doesViewModel.delete(adapter.getDoesAt(viewHolder.adapterPosition))
                 Toast.makeText(baseContext, "Does Deleted!", Toast.LENGTH_SHORT).show()
             }
         }
@@ -73,9 +74,9 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(AddEditDoesActivity.EXTRA_TITLE, does.title)
                 intent.putExtra(AddEditDoesActivity.EXTRA_DESCRIPTION, does.description)
                 intent.putExtra(AddEditDoesActivity.EXTRA_PRIORITY, does.priority)
-                intent.putExtra(AddEditDoesActivity.EXTRA_DUE_DATE, does.duedate)
+                intent.putExtra(AddEditDoesActivity.EXTRA_DUE_TIME, does.duetime)
 
-                startActivityForResult(intent, EDIT_NOTE_REQUEST)
+                startActivityForResult(intent, EDIT_DOES_REQUEST)
             }
         })
     }
@@ -87,9 +88,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            R.id.delete_all_notes -> {
-                doesViewModel.deleteAllNotes()
-                Toast.makeText(this, "All notes deleted!", Toast.LENGTH_SHORT).show()
+            R.id.delete_all_does -> {
+                doesViewModel.deleteAllDoes()
+                Toast.makeText(this, "All does deleted!", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> {
@@ -101,31 +102,33 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == ADD_NOTE_REQUEST && resultCode == Activity.RESULT_OK) {
-            val newNote = Does(
+        if (requestCode == ADD_DOES_REQUEST && resultCode == Activity.RESULT_OK) {
+            val newDoes = Does(
                 data!!.getStringExtra(AddEditDoesActivity.EXTRA_TITLE),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DESCRIPTION),
                 data.getIntExtra(AddEditDoesActivity.EXTRA_PRIORITY, 1),
+                data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_TIME),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_DATE)
             )
-            doesViewModel.insert(newNote)
+            doesViewModel.insert(newDoes)
 
             Toast.makeText(this, "Does saved!", Toast.LENGTH_SHORT).show()
-        } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == EDIT_DOES_REQUEST && resultCode == Activity.RESULT_OK) {
             val id = data?.getIntExtra(AddEditDoesActivity.EXTRA_ID, -1)
 
             if (id == -1) {
                 Toast.makeText(this, "Could not update! Error!", Toast.LENGTH_SHORT).show()
             }
 
-            val updateNote = Does(
+            val updateDoes = Does(
                 data!!.getStringExtra(AddEditDoesActivity.EXTRA_TITLE),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DESCRIPTION),
                 data.getIntExtra(AddEditDoesActivity.EXTRA_PRIORITY, 1),
+                data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_TIME),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_DATE)
             )
-            updateNote.id = data.getIntExtra(AddEditDoesActivity.EXTRA_ID, -1)
-            doesViewModel.update(updateNote)
+            updateDoes.id = data.getIntExtra(AddEditDoesActivity.EXTRA_ID, -1)
+            doesViewModel.update(updateDoes)
 
         } else {
             Toast.makeText(this, "Does not saved!", Toast.LENGTH_SHORT).show()

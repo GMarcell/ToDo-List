@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.github.gmarcell.tagnotes", appContext.packageName)
+        assertEquals("com.github.gmarcell.todolist", appContext.packageName)
     }
 }

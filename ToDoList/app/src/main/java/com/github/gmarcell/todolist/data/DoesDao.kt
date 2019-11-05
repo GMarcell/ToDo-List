@@ -15,10 +15,10 @@ interface DoesDao {
     @Delete
     fun delete(does: Does)
 
-    @Query("DELETE FROM note_table")
-    fun deleteAllNotes()
+    @Query("DELETE FROM does_table")
+    fun deleteAllDoes()
 
-    @Query("SELECT * FROM note_table ORDER BY priority DESC")
-    fun getAllNotes(): LiveData<List<Does>>
+    @Query("SELECT * FROM does_table ORDER BY priority DESC")
+    fun getAllDoes(): LiveData<List<Does>>
 
 }

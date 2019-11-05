@@ -3,7 +3,7 @@ package com.github.gmarcell.todolist.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "note_table")
+@Entity(tableName = "does_table")
 data class Does(
 
     var title: String,
@@ -11,6 +11,8 @@ data class Does(
     var description: String,
 
     var priority: Int,
+
+    var duetime: String,
 
     var duedate: String
 ) {

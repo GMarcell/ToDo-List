@@ -8,69 +8,69 @@ class DoesRepository(application: Application) {
 
     private var doesDao: DoesDao
 
-    private var allNotes: LiveData<List<Does>>
+    private var allDoes: LiveData<List<Does>>
 
     init {
         val database: DoesDatabase = DoesDatabase.getInstance(
             application.applicationContext
         )!!
-        doesDao = database.noteDao()
-        allNotes = doesDao.getAllNotes()
+        doesDao = database.doesDao()
+        allDoes = doesDao.getAllDoes()
     }
 
     fun insert(does: Does) {
-        val insertNoteAsyncTask = InsertNoteAsyncTask(doesDao).execute(does)
+        val insertDoesAsyncTask = InsertDoesAsyncTask(doesDao).execute(does)
     }
 
     fun update(does: Does) {
-        val updateNoteAsyncTask = UpdateNoteAsyncTask(doesDao).execute(does)
+        val updateDoesAsyncTask = UpdateDoesAsyncTask(doesDao).execute(does)
     }
 
 
     fun delete(does: Does) {
-        val deleteNoteAsyncTask = DeleteNoteAsyncTask(doesDao).execute(does)
+        val deleteDoesAsyncTask = DeleteDoesAsyncTask(doesDao).execute(does)
     }
 
-    fun deleteAllNotes() {
-        val deleteAllNotesAsyncTask = DeleteAllNotesAsyncTask(
+    fun deleteAllDoes() {
+        val deleteAllDoesAsyncTask = DeleteAllDoesAsyncTask(
             doesDao
         ).execute()
     }
 
-    fun getAllNotes(): LiveData<List<Does>> {
-        return allNotes
+    fun getAllDoes(): LiveData<List<Does>> {
+        return allDoes
     }
 
     companion object {
-        private class InsertNoteAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
-            val noteDao = doesDao
+        private class InsertDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
+            val doesDao = doesDao
 
             override fun doInBackground(vararg p0: Does?) {
-                noteDao.insert(p0[0]!!)
+                doesDao.insert(p0[0]!!)
             }
         }
 
-        private class UpdateNoteAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
-            val noteDao = doesDao
+        private class UpdateDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
+            val doesDao = doesDao
 
             override fun doInBackground(vararg p0: Does?) {
-                noteDao.update(p0[0]!!)
+                doesDao.update(p0[0]!!)
             }
         }
 
-        private class DeleteNoteAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
-            val noteDao = doesDao
+        private class DeleteDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
+            val doesDao = doesDao
 
             override fun doInBackground(vararg p0: Does?) {
-                noteDao.delete(p0[0]!!)
+                doesDao.delete(p0[0]!!)
             }
         }
 
-        private class DeleteAllNotesAsyncTask(doesDao: DoesDao) : AsyncTask<Unit, Unit, Unit>() {
-            val noteDao = doesDao
+        private class DeleteAllDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Unit, Unit, Unit>() {
+            val doesDao = doesDao
 
             override fun doInBackground(vararg p0: Unit?) {
-                noteDao.deleteAllNotes()
+                doesDao.deleteAllDoes()
             }
         }
     }

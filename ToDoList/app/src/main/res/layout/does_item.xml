@@ -32,10 +32,10 @@
             android:text="Title Description"/>
 
         <TextView
-            android:id="@+id/text_view_priority"
+            android:id="@+id/text_view_duetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="13:00"
             android:layout_alignParentEnd="true"
             android:textColor="#F63EA5"
             android:textSize="18sp" />
@@ -48,7 +48,7 @@
             android:layout_marginTop="8dp"
             android:gravity="right"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/text_view_priority"
+            android:layout_below="@id/text_view_duetime"
             android:textColor="#F63EA5"
             android:textSize="18sp"/>
 

@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.gmarcell.todolist.R
 import com.github.gmarcell.todolist.data.Does
-import kotlinx.android.synthetic.main.note_item.view.*
+import kotlinx.android.synthetic.main.does_item.view.*
 
-class todoAdapter : ListAdapter<Does, todoAdapter.NoteHolder>(DIFF_CALLBACK) {
+class todoAdapter : ListAdapter<Does, todoAdapter.DoesHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Does>() {
@@ -21,32 +21,33 @@ class todoAdapter : ListAdapter<Does, todoAdapter.NoteHolder>(DIFF_CALLBACK) {
 
             override fun areContentsTheSame(oldItem: Does, newItem: Does): Boolean {
                 return oldItem.title == newItem.title && oldItem.description == newItem.description
-                        && oldItem.priority == newItem.priority && oldItem.duedate == newItem.duedate
+                        && oldItem.priority == newItem.priority && oldItem.duetime == newItem.duetime
             }
         }
     }
 
     private var listener: OnItemClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
-        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
-        return NoteHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoesHolder {
+        val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.does_item, parent, false)
+        return DoesHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: NoteHolder, position: Int) {
+    override fun onBindViewHolder(holder: DoesHolder, position: Int) {
         val currentDoes: Does = getItem(position)
 
         holder.textViewTitle.text = currentDoes.title
         holder.textViewPriority.text = currentDoes.priority.toString()
         holder.textViewDescription.text = currentDoes.description
+        holder.textViewDueTime.text = currentDoes.duetime
         holder.textViewDueDate.text = currentDoes.duedate
     }
 
-    fun getNoteAt(position: Int): Does {
+    fun getDoesAt(position: Int): Does {
         return getItem(position)
     }
 
-    inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class DoesHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
@@ -59,6 +60,7 @@ class todoAdapter : ListAdapter<Does, todoAdapter.NoteHolder>(DIFF_CALLBACK) {
         var textViewTitle: TextView = itemView.text_view_title
         var textViewPriority: TextView = itemView.text_view_priority
         var textViewDescription: TextView = itemView.text_view_description
+        var textViewDueTime: TextView = itemView.text_view_duetime
         var textViewDueDate: TextView = itemView.text_view_duedate
     }
 

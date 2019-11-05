@@ -10,7 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 @Database(entities = [Does::class], version = 1)
 abstract class DoesDatabase : RoomDatabase() {
 
-    abstract fun noteDao(): DoesDao
+    abstract fun doesDao(): DoesDao
 
 
     companion object {
@@ -21,7 +21,7 @@ abstract class DoesDatabase : RoomDatabase() {
                 synchronized(DoesDatabase::class) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        DoesDatabase::class.java, "note_database"
+                        DoesDatabase::class.java, "does_database"
                     )
                         .fallbackToDestructiveMigration() // when version increments, it migrates (deletes db and creates new) - else it crashes
                         .addCallback(roomCallback)
@@ -45,12 +45,12 @@ abstract class DoesDatabase : RoomDatabase() {
     }
 
     class PopulateDbAsyncTask(db: DoesDatabase?) : AsyncTask<Unit, Unit, Unit>() {
-        private val noteDao = db?.noteDao()
+        private val doesDao = db?.doesDao()
 
         override fun doInBackground(vararg p0: Unit?) {
-            noteDao?.insert(Does("title 1", "description 1", 1, "now"))
-            noteDao?.insert(Does("title 2", "description 2", 2, "tommorrow"))
-            noteDao?.insert(Does("title 3", "description 3", 3, "yesterday"))
+            doesDao?.insert(Does("title 1", "description 1", 1, "13.00", "1 Oct 2019"))
+            doesDao?.insert(Does("title 2", "description 2", 2, "17.00", "13 Oct 2019"))
+            doesDao?.insert(Does("title 3", "description 3", 3, "18.00", "21 Oct 2019"))
         }
     }
 

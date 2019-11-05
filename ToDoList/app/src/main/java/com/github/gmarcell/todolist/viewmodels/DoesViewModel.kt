@@ -9,7 +9,7 @@ import com.github.gmarcell.todolist.data.Does
 class DoesViewModel(application: Application) : AndroidViewModel(application) {
     private var repository: DoesRepository =
         DoesRepository(application)
-    private var allNotes: LiveData<List<Does>> = repository.getAllNotes()
+    private var allDoes: LiveData<List<Does>> = repository.getAllDoes()
 
     fun insert(does: Does) {
         repository.insert(does)
@@ -23,11 +23,11 @@ class DoesViewModel(application: Application) : AndroidViewModel(application) {
         repository.delete(does)
     }
 
-    fun deleteAllNotes() {
-        repository.deleteAllNotes()
+    fun deleteAllDoes() {
+        repository.deleteAllDoes()
     }
 
-    fun getAllNotes(): LiveData<List<Does>> {
-        return allNotes
+    fun getAllDoes(): LiveData<List<Does>> {
+        return allDoes
     }
 }
