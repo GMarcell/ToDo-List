@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.allyants.notifyme.NotifyMe
 import kotlinx.android.synthetic.main.activity_add_does.*
 import java.util.*
 
@@ -20,6 +21,7 @@ import java.util.*
 class AddEditDoesActivity : AppCompatActivity() {
 
     val cal = Calendar.getInstance()
+    lateinit var mrNotifyMe: NotifyMe
 
     companion object {
         const val EXTRA_ID = "com.github.gmarcell.todolist.EXTRA_ID"
@@ -85,7 +87,6 @@ class AddEditDoesActivity : AppCompatActivity() {
                 saveDoes()
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -107,6 +108,19 @@ class AddEditDoesActivity : AppCompatActivity() {
             }
         }
 
+        // Notification
+        mrNotifyMe = NotifyMe.Builder(applicationContext)
+            .title(edit_text_title.text.toString())
+            .content(edit_text_description.text.toString())
+            .color(255, 0, 0, 255)
+            .led_color(255, 255, 255, 255)
+            .time(cal)
+            .addAction(Intent(), "Snooze", false)
+            .key("test")
+            .addAction(Intent(), "Dissmiss", true, false)
+            .addAction(Intent(), "Done")
+            .large_icon(R.mipmap.ic_launcher_round)
+            .build()
         setResult(Activity.RESULT_OK, data)
         finish()
     }
