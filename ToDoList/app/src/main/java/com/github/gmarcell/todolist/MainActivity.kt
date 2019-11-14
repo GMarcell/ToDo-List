@@ -3,8 +3,6 @@ package com.github.gmarcell.todolist
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -16,7 +14,6 @@ import com.github.gmarcell.todolist.data.Does
 import com.github.gmarcell.todolist.adapters.todoAdapter
 import com.github.gmarcell.todolist.viewmodels.DoesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,30 +70,11 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(AddEditDoesActivity.EXTRA_ID, does.id)
                 intent.putExtra(AddEditDoesActivity.EXTRA_TITLE, does.title)
                 intent.putExtra(AddEditDoesActivity.EXTRA_DESCRIPTION, does.description)
-                intent.putExtra(AddEditDoesActivity.EXTRA_PRIORITY, does.priority)
                 intent.putExtra(AddEditDoesActivity.EXTRA_DUE_TIME, does.duetime)
 
                 startActivityForResult(intent, EDIT_DOES_REQUEST)
             }
         })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.delete_all_does -> {
-                doesViewModel.deleteAllDoes()
-                Toast.makeText(this, "All does deleted!", Toast.LENGTH_SHORT).show()
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -106,7 +84,6 @@ class MainActivity : AppCompatActivity() {
             val newDoes = Does(
                 data!!.getStringExtra(AddEditDoesActivity.EXTRA_TITLE),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DESCRIPTION),
-                data.getIntExtra(AddEditDoesActivity.EXTRA_PRIORITY, 1),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_TIME),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_DATE)
             )
@@ -123,7 +100,6 @@ class MainActivity : AppCompatActivity() {
             val updateDoes = Does(
                 data!!.getStringExtra(AddEditDoesActivity.EXTRA_TITLE),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DESCRIPTION),
-                data.getIntExtra(AddEditDoesActivity.EXTRA_PRIORITY, 1),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_TIME),
                 data.getStringExtra(AddEditDoesActivity.EXTRA_DUE_DATE)
             )

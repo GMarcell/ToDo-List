@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(entities = [Does::class], version = 1)
@@ -48,9 +49,9 @@ abstract class DoesDatabase : RoomDatabase() {
         private val doesDao = db?.doesDao()
 
         override fun doInBackground(vararg p0: Unit?) {
-            doesDao?.insert(Does("title 1", "description 1", 1, "13.00", "1 Oct 2019"))
-            doesDao?.insert(Does("title 2", "description 2", 2, "17.00", "13 Oct 2019"))
-            doesDao?.insert(Does("title 3", "description 3", 3, "18.00", "21 Oct 2019"))
+            doesDao?.insert(Does("title 1", "description 1", "13.00", "10 Oct 2019"))
+            doesDao?.insert(Does("title 2", "description 2", "17.00", "13 Oct 2019"))
+            doesDao?.insert(Does("title 3", "description 3", "18.00", "21 Oct 2019"))
         }
     }
 

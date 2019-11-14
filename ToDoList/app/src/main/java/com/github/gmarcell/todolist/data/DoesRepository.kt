@@ -19,22 +19,16 @@ class DoesRepository(application: Application) {
     }
 
     fun insert(does: Does) {
-        val insertDoesAsyncTask = InsertDoesAsyncTask(doesDao).execute(does)
+        InsertDoesAsyncTask(doesDao).execute(does)
     }
 
     fun update(does: Does) {
-        val updateDoesAsyncTask = UpdateDoesAsyncTask(doesDao).execute(does)
+        UpdateDoesAsyncTask(doesDao).execute(does)
     }
 
 
     fun delete(does: Does) {
-        val deleteDoesAsyncTask = DeleteDoesAsyncTask(doesDao).execute(does)
-    }
-
-    fun deleteAllDoes() {
-        val deleteAllDoesAsyncTask = DeleteAllDoesAsyncTask(
-            doesDao
-        ).execute()
+        DeleteDoesAsyncTask(doesDao).execute(does)
     }
 
     fun getAllDoes(): LiveData<List<Does>> {
@@ -42,35 +36,24 @@ class DoesRepository(application: Application) {
     }
 
     companion object {
-        private class InsertDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
-            val doesDao = doesDao
+        private class InsertDoesAsyncTask(val doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
 
             override fun doInBackground(vararg p0: Does?) {
                 doesDao.insert(p0[0]!!)
             }
         }
 
-        private class UpdateDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
-            val doesDao = doesDao
+        private class UpdateDoesAsyncTask(val doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
 
             override fun doInBackground(vararg p0: Does?) {
                 doesDao.update(p0[0]!!)
             }
         }
 
-        private class DeleteDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
-            val doesDao = doesDao
+        private class DeleteDoesAsyncTask(val doesDao: DoesDao) : AsyncTask<Does, Unit, Unit>() {
 
             override fun doInBackground(vararg p0: Does?) {
                 doesDao.delete(p0[0]!!)
-            }
-        }
-
-        private class DeleteAllDoesAsyncTask(doesDao: DoesDao) : AsyncTask<Unit, Unit, Unit>() {
-            val doesDao = doesDao
-
-            override fun doInBackground(vararg p0: Unit?) {
-                doesDao.deleteAllDoes()
             }
         }
     }

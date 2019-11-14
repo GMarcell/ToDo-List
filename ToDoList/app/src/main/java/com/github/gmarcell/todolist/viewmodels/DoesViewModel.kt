@@ -23,10 +23,6 @@ class DoesViewModel(application: Application) : AndroidViewModel(application) {
         repository.delete(does)
     }
 
-    fun deleteAllDoes() {
-        repository.deleteAllDoes()
-    }
-
     fun getAllDoes(): LiveData<List<Does>> {
         return allDoes
     }

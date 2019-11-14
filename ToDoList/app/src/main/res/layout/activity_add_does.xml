@@ -3,81 +3,181 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-
-    <EditText
-            android:id="@+id/edit_text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Title"
-            android:inputType="text"/>
-
-    <EditText
-        android:id="@+id/edit_text_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description"
-        android:inputType="textMultiLine"/>
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="3dp">
-
-        <Button
-            android:id="@+id/pickTimebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="Pick Time" />
+        android:layout_height="198dp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
 
         <TextView
-            android:id="@+id/edit_text_duetime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:textSize="25sp"
-            android:gravity="right"
-            android:text="test"/>
+            android:layout_marginTop="40dp"
+            android:textSize="30sp"
+            android:textColor="#FFF"
+            android:text="Task Details"
+            android:textAlignment="center"
+            android:layout_marginBottom="18dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="3dp">
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="-70dp"
+        android:background="@drawable/bgitemdoes"
+        android:orientation="vertical"
+        android:paddingBottom="22dp"
+        android:paddingTop="22dp">
 
-        <Button
-            android:id="@+id/pickDatebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="Pick Date" />
-
-        <TextView
-            android:id="@+id/edit_text_duedate"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:textSize="25sp"
-            android:gravity="right"/>
+            android:orientation="vertical"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Title"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <EditText
+                android:id="@+id/edit_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="What You Do?"
+                android:inputType="text"
+                android:textSize="22sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Description"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <EditText
+                android:id="@+id/edit_text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="How To?"
+                android:inputType="textMultiLine"
+                android:textSize="22sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Time"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <ImageView
+                    android:id="@+id/pickTimebtn"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/clock"/>
+
+                <TextView
+                    android:id="@+id/edit_text_duetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textSize="25sp"
+                    android:gravity="right"
+                    android:hint="Time"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:id="@+id/pickDatebtn"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:id="@+id/edit_text_duedate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textSize="25sp"
+                    android:gravity="right"
+                    android:hint="Date"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Priority:"
-            android:textAppearance="@android:style/TextAppearance.Medium"/>
-
-    <NumberPicker
-        android:id="@+id/number_picker_priority"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/savebtn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbarAlwaysDrawHorizontalTrack="true" />
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Save"
+        android:textColor="#FFF"
+        android:background="@drawable/bgbtncreate"
+        android:textSize="22sp" />
 
+    <Button
+        android:id="@+id/cancelbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Cancel"
+        android:textColor="#AFAFAF"
+        android:background="@drawable/bgbtncancel"
+        android:textSize="22sp" />
 </LinearLayout>

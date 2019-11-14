@@ -21,7 +21,7 @@ class todoAdapter : ListAdapter<Does, todoAdapter.DoesHolder>(DIFF_CALLBACK) {
 
             override fun areContentsTheSame(oldItem: Does, newItem: Does): Boolean {
                 return oldItem.title == newItem.title && oldItem.description == newItem.description
-                        && oldItem.priority == newItem.priority && oldItem.duetime == newItem.duetime
+                        && oldItem.duetime == newItem.duetime
             }
         }
     }
@@ -37,7 +37,6 @@ class todoAdapter : ListAdapter<Does, todoAdapter.DoesHolder>(DIFF_CALLBACK) {
         val currentDoes: Does = getItem(position)
 
         holder.textViewTitle.text = currentDoes.title
-        holder.textViewPriority.text = currentDoes.priority.toString()
         holder.textViewDescription.text = currentDoes.description
         holder.textViewDueTime.text = currentDoes.duetime
         holder.textViewDueDate.text = currentDoes.duedate
@@ -58,7 +57,6 @@ class todoAdapter : ListAdapter<Does, todoAdapter.DoesHolder>(DIFF_CALLBACK) {
         }
 
         var textViewTitle: TextView = itemView.text_view_title
-        var textViewPriority: TextView = itemView.text_view_priority
         var textViewDescription: TextView = itemView.text_view_description
         var textViewDueTime: TextView = itemView.text_view_duetime
         var textViewDueDate: TextView = itemView.text_view_duedate
