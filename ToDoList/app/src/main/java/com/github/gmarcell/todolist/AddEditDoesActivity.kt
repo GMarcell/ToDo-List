@@ -35,8 +35,6 @@ class AddEditDoesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_does)
 
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
-
         if (intent.hasExtra(EXTRA_ID)) {
             title = "Edit Does"
             edit_text_title.setText(intent.getStringExtra(EXTRA_TITLE))
@@ -47,7 +45,7 @@ class AddEditDoesActivity : AppCompatActivity() {
             title = "Add Does"
         }
 
-        pickTimebtn.setOnClickListener {
+        edit_text_duetime.setOnClickListener {
             val timeSetListener = TimePickerDialog.OnTimeSetListener{ _, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
@@ -57,7 +55,7 @@ class AddEditDoesActivity : AppCompatActivity() {
             TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
 
-        pickDatebtn.setOnClickListener {
+        edit_text_duedate.setOnClickListener {
             val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, month)
@@ -94,6 +92,7 @@ class AddEditDoesActivity : AppCompatActivity() {
             }
         }
 
+        val intent = Intent(applicationContext, MainActivity::class.java)
         // Notification
         mrNotifyMe = NotifyMe.Builder(applicationContext)
             .title(edit_text_title.text.toString())
@@ -101,10 +100,7 @@ class AddEditDoesActivity : AppCompatActivity() {
             .color(255, 0, 0, 255)
             .led_color(255, 255, 255, 255)
             .time(cal)
-            .addAction(Intent(), "Snooze", false)
-            .key("test")
-            .addAction(Intent(), "Dissmiss", true, false)
-            .addAction(Intent(), "Done")
+            .addAction(intent, "Done")
             .large_icon(R.mipmap.ic_launcher_round)
             .build()
         setResult(Activity.RESULT_OK, data)

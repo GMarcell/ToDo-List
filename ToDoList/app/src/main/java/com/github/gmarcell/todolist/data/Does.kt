@@ -19,6 +19,9 @@ data class Does(
 
     @ColumnInfo(name = "Date")
     var duedate: String
+
+//    @ColumnInfo(name = "isComplete")
+//    var isComplete: Boolean
 ) {
     //does it matter if these are private or not?
     @PrimaryKey(autoGenerate = true)

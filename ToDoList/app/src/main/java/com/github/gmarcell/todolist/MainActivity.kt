@@ -3,6 +3,8 @@ package com.github.gmarcell.todolist
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        doesViewModel = ViewModelProviders.of(this).get(DoesViewModel::class.java)
 
         buttonAddDoes.setOnClickListener {
             startActivityForResult(
@@ -42,13 +45,11 @@ class MainActivity : AppCompatActivity() {
 
         recycler_view.adapter = adapter
 
-        doesViewModel = ViewModelProviders.of(this).get(DoesViewModel::class.java)
-
         doesViewModel.getAllDoes().observe(this, Observer<List<Does>> {
             adapter.submitList(it)
         })
 
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT).or(ItemTouchHelper.UP).or(ItemTouchHelper.DOWN)) {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT)) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,

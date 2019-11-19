@@ -3,15 +3,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+    android:background="@drawable/gradient">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="198dp"
-        android:orientation="vertical"
-        android:background="@color/colorPrimaryDark">
-
-        <TextView
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -26,18 +21,17 @@
             android:layout_height="1dp"
             android:layout_marginTop="20dp"/>
 
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="-70dp"
+
         android:background="@drawable/bgitemdoes"
         android:orientation="vertical"
         android:paddingBottom="22dp"
-        android:paddingTop="22dp">
+        android:paddingTop="22dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,7 +159,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:text="Save"
-        android:textColor="#FFF"
+        android:textColor="#00b5a5"
         android:background="@drawable/bgbtncreate"
         android:textSize="22sp" />
 
@@ -177,7 +171,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:text="Cancel"
-        android:textColor="#AFAFAF"
+        android:textColor="#00b5a5"
         android:background="@drawable/bgbtncancel"
         android:textSize="22sp" />
 </LinearLayout>
