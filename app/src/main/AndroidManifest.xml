@@ -15,14 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Notification.testNotif" />
-        <!-- <receiver android:name="com.allyants.notifyme.NotificationPublisher" /> -->
-        <!-- <receiver android:name="com.allyants.notifyme.BootNotifyMe"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
-        <!-- <category android:name="android.intent.category.HOME" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
+        <activity android:name=".notification.NotifActivity"></activity>
+        <activity android:name=".notification.Math" />
         <activity
             android:name=".Splash"
             android:theme="@style/AppTheme.SplashScreen">
@@ -39,7 +33,7 @@
             android:name=".AddEditDoesActivity"
             android:parentActivityName=".MainActivity" />
 
-        <receiver android:name=".Notification.AlarmReceiver" />
+        <receiver android:name=".notification.AlarmReceiver" />
     </application>
 
 </manifest>

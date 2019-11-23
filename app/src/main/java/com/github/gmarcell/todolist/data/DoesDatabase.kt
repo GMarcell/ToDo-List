@@ -5,7 +5,6 @@ import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(entities = [Does::class], version = 1)
@@ -30,10 +29,6 @@ abstract class DoesDatabase : RoomDatabase() {
                 }
             }
             return instance
-        }
-
-        fun destroyInstance() {
-            instance = null
         }
 
         private val roomCallback = object : RoomDatabase.Callback() {

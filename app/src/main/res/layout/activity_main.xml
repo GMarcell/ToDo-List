@@ -55,11 +55,12 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center|bottom"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bgbtnnew"
         android:text="+"
-        android:textSize="35sp"
-        android:textColor="#149c90"/>
+        android:textColor="#149c90"
+        android:textSize="35sp" />
 
 </LinearLayout>

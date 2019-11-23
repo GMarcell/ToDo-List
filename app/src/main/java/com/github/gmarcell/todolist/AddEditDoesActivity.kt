@@ -10,8 +10,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.allyants.notifyme.NotifyMe
-import com.github.gmarcell.todolist.Notification.AlarmReceiver
+import com.github.gmarcell.todolist.notification.AlarmReceiver
 import kotlinx.android.synthetic.main.activity_add_does.*
 import java.util.*
 
@@ -19,7 +18,6 @@ import java.util.*
 class AddEditDoesActivity : AppCompatActivity() {
 
     private val cal = Calendar.getInstance()
-//    private lateinit var mrNotifyMe: NotifyMe
 
     companion object {
         const val EXTRA_ID = "com.github.gmarcell.todolist.EXTRA_ID"
@@ -49,6 +47,7 @@ class AddEditDoesActivity : AppCompatActivity() {
             val timeSetListener = TimePickerDialog.OnTimeSetListener{ _, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
+                cal.set(Calendar.SECOND, 0)
 
                 edit_text_duetime.text = SimpleDateFormat("HH:mm").format(cal.time)
             }
@@ -93,17 +92,6 @@ class AddEditDoesActivity : AppCompatActivity() {
             }
         }
 
-//        val intent = Intent(applicationContext, Math::class.java)
-//        // Notification
-//        mrNotifyMe = NotifyMe.Builder(applicationContext)
-//            .title(edit_text_title.text.toString())
-//            .content(edit_text_description.text.toString())
-//            .color(255, 0, 0, 255)
-//            .led_color(255, 255, 255, 255)
-//            .time(cal)
-//            .addAction(intent, "Done")
-//            .large_icon(R.mipmap.ic_launcher_round)
-//            .build()
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
         val broadcast = PendingIntent.getBroadcast(
             this,

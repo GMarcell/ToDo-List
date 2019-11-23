@@ -3,8 +3,6 @@ package com.github.gmarcell.todolist
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -72,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(AddEditDoesActivity.EXTRA_TITLE, does.title)
                 intent.putExtra(AddEditDoesActivity.EXTRA_DESCRIPTION, does.description)
                 intent.putExtra(AddEditDoesActivity.EXTRA_DUE_TIME, does.duetime)
+                intent.putExtra(AddEditDoesActivity.EXTRA_DUE_DATE, does.duedate)
 
                 startActivityForResult(intent, EDIT_DOES_REQUEST)
             }
