@@ -1,9 +1,8 @@
 package com.github.gmarcell.todolist
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Build
@@ -12,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.allyants.notifyme.NotifyMe
+import com.github.gmarcell.todolist.Notification.AlarmReceiver
 import kotlinx.android.synthetic.main.activity_add_does.*
 import java.util.*
 
@@ -19,7 +19,7 @@ import java.util.*
 class AddEditDoesActivity : AppCompatActivity() {
 
     private val cal = Calendar.getInstance()
-    private lateinit var mrNotifyMe: NotifyMe
+//    private lateinit var mrNotifyMe: NotifyMe
 
     companion object {
         const val EXTRA_ID = "com.github.gmarcell.todolist.EXTRA_ID"
@@ -77,6 +77,7 @@ class AddEditDoesActivity : AppCompatActivity() {
     }
 
     private fun saveDoes() {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (edit_text_title.text.toString().trim().isBlank() || edit_text_description.text.toString().trim().isBlank() || edit_text_duetime.text.toString().trim().isBlank()) {
             Toast.makeText(this, "Can not insert empty does!", Toast.LENGTH_SHORT).show()
             return
@@ -92,17 +93,25 @@ class AddEditDoesActivity : AppCompatActivity() {
             }
         }
 
-        val intent = Intent(applicationContext, MainActivity::class.java)
-        // Notification
-        mrNotifyMe = NotifyMe.Builder(applicationContext)
-            .title(edit_text_title.text.toString())
-            .content(edit_text_description.text.toString())
-            .color(255, 0, 0, 255)
-            .led_color(255, 255, 255, 255)
-            .time(cal)
-            .addAction(intent, "Done")
-            .large_icon(R.mipmap.ic_launcher_round)
-            .build()
+//        val intent = Intent(applicationContext, Math::class.java)
+//        // Notification
+//        mrNotifyMe = NotifyMe.Builder(applicationContext)
+//            .title(edit_text_title.text.toString())
+//            .content(edit_text_description.text.toString())
+//            .color(255, 0, 0, 255)
+//            .led_color(255, 255, 255, 255)
+//            .time(cal)
+//            .addAction(intent, "Done")
+//            .large_icon(R.mipmap.ic_launcher_round)
+//            .build()
+        val notificationIntent = Intent(this, AlarmReceiver::class.java)
+        val broadcast = PendingIntent.getBroadcast(
+            this,
+            100,
+            notificationIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.timeInMillis, broadcast)
         setResult(Activity.RESULT_OK, data)
         finish()
     }
