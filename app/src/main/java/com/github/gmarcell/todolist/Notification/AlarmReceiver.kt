@@ -4,16 +4,19 @@ import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import com.github.gmarcell.todolist.AddEditDoesActivity
 import com.github.gmarcell.todolist.R
 
-@Suppress("DEPRECATION")
+
+@Suppress("DEPRECATION", "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val notificationIntent = Intent(context, NotifActivity::class.java)
+        notificationIntent.putExtras(intent)
 
         val stackBuilder = TaskStackBuilder.create(context)
         stackBuilder.addParentStack(NotifActivity::class.java)
@@ -23,10 +26,11 @@ class AlarmReceiver : BroadcastReceiver() {
         val builder = Notification.Builder(context)
         val notification =
             builder.setContentTitle(intent.getStringExtra(AddEditDoesActivity.EXTRA_TITLE))
-                .setContentText(intent.getStringExtra(AddEditDoesActivity.EXTRA_DESCRIPTION))
+                .setContentText("Do it Now MORON!!!")
                 .setTicker("New Task is Due!")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pendingIntent).build()
+                .setContentIntent(pendingIntent)
+                .build()
 
         val a = longArrayOf(100, 1000, 1000)
         val vibrator =

@@ -26,5 +26,4 @@ class DoesViewModel(application: Application) : AndroidViewModel(application) {
     fun getAllDoes(): LiveData<List<Does>> {
         return allDoes
     }
-
 }

@@ -93,6 +93,7 @@ class AddEditDoesActivity : AppCompatActivity() {
         }
 
         val notificationIntent = Intent(this, AlarmReceiver::class.java)
+        notificationIntent.putExtras(data)
         val broadcast = PendingIntent.getBroadcast(
             this,
             100,

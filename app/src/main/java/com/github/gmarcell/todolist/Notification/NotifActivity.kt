@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Vibrator
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.github.gmarcell.todolist.AddEditDoesActivity
 import com.github.gmarcell.todolist.MainActivity
 import com.github.gmarcell.todolist.R
 import kotlinx.android.synthetic.main.activity_notif.*
@@ -22,6 +24,14 @@ class NotifActivity : AppCompatActivity() {
         val random1 = Random.nextInt(0, 99)
         val random2 = Random.nextInt(0, 99)
         val random3 = Random.nextInt(0, 99)
+
+        val Titletext = findViewById<TextView>(R.id.Titletext)
+        val Desctext = findViewById<TextView>(R.id.Desctext)
+        val intent =intent.extras
+        val title = intent.getString(AddEditDoesActivity.EXTRA_TITLE)
+        val desc = intent.getString(AddEditDoesActivity.EXTRA_DESCRIPTION)
+        Titletext.text = title
+        Desctext.text = desc
 
         answer = random1 + random2 - random3
         question.text = random1.toString() + " + " + random2.toString() + " - " + random3.toString()

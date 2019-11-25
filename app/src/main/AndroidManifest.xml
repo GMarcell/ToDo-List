@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".notification.NotifActivity"></activity>
-        <activity android:name=".notification.Math" />
         <activity
             android:name=".Splash"
             android:theme="@style/AppTheme.SplashScreen">
