@@ -1,5 +1,6 @@
 package com.github.gmarcell.todolist.notification
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,12 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.gmarcell.todolist.AddEditDoesActivity
 import com.github.gmarcell.todolist.MainActivity
 import com.github.gmarcell.todolist.R
+import com.github.gmarcell.todolist.data.Does
 import kotlinx.android.synthetic.main.activity_notif.*
 import kotlin.random.Random
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class NotifActivity : AppCompatActivity() {
 
-    var answer: Int = 0
+    private var answer: Int = 0
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notif)
@@ -25,16 +29,16 @@ class NotifActivity : AppCompatActivity() {
         val random2 = Random.nextInt(0, 99)
         val random3 = Random.nextInt(0, 99)
 
-        val Titletext = findViewById<TextView>(R.id.Titletext)
-        val Desctext = findViewById<TextView>(R.id.Desctext)
+        val titletext = findViewById<TextView>(R.id.Titletext)
+        val desctext = findViewById<TextView>(R.id.Desctext)
         val intent =intent.extras
         val title = intent.getString(AddEditDoesActivity.EXTRA_TITLE)
         val desc = intent.getString(AddEditDoesActivity.EXTRA_DESCRIPTION)
-        Titletext.text = title
-        Desctext.text = desc
+        titletext.text = title
+        desctext.text = desc
 
         answer = random1 + random2 - random3
-        question.text = random1.toString() + " + " + random2.toString() + " - " + random3.toString()
+        question.text = "$random1 + $random2 - $random3"
 
         kill.setOnClickListener {
             if (userAns.text.toString() == answer.toString()){

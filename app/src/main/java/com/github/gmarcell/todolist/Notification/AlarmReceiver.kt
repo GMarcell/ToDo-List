@@ -4,12 +4,12 @@ import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import com.github.gmarcell.todolist.AddEditDoesActivity
 import com.github.gmarcell.todolist.R
+import com.github.gmarcell.todolist.service.sampleservice
 
 
 @Suppress("DEPRECATION", "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -42,6 +42,8 @@ class AlarmReceiver : BroadcastReceiver() {
             vibrator.vibrate(10000)
         }
 
+//        context.startForegroundService(Intent(context, sampleservice::class.java))
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(CHANNEL_ID)
         }
@@ -60,6 +62,6 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     companion object {
-        private const val CHANNEL_ID = "com.github.todolist.notification"
+        private const val CHANNEL_ID = "com.github.gmarcell.todolist.notification"
     }
 }

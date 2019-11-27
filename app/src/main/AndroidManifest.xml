@@ -33,6 +33,7 @@
             android:parentActivityName=".MainActivity" />
 
         <receiver android:name=".notification.AlarmReceiver" />
+        <service android:name=".service.sampleservice"/>
     </application>
 
 </manifest>
