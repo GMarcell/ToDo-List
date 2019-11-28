@@ -12,9 +12,9 @@ This is a simple to-do list with a special twist on how its reminder works — y
 ## Running
 To run the application, you can either just install the .apk or run the app directly through Android Studio.
 
-### Demonstration
+## Demonstration
 Watch [this video](https://drive.google.com/open?id=1YZess1O6kT3hk0Z0cAQTwTqmKLVI_Lc_) to see how it works.
 
-### Contributors
+## Contributors
 - Grand Marcell
 - Farrell Nathaniel
