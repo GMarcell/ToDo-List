@@ -52,9 +52,9 @@
                 android:id="@+id/edit_text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="What You Do?"
+                android:hint="What do you need to do?"
                 android:inputType="text"
-                android:textSize="22sp"/>
+                android:textSize="22sp" />
 
         </LinearLayout>
 
@@ -78,9 +78,9 @@
                 android:id="@+id/edit_text_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="How To?"
+                android:hint="Description of task"
                 android:inputType="textMultiLine"
-                android:textSize="22sp"/>
+                android:textSize="22sp" />
 
         </LinearLayout>
 
@@ -117,9 +117,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:textSize="25sp"
                     android:gravity="right"
-                    android:hint="Time"/>
+                    android:hint="Set the time"
+                    android:textSize="25sp" />
 
             </LinearLayout>
 
@@ -141,9 +141,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:textSize="25sp"
                     android:gravity="right"
-                    android:hint="Date"/>
+                    android:hint="Set the date"
+                    android:textSize="25sp" />
 
             </LinearLayout>
 

@@ -26,14 +26,17 @@ class AlarmReceiver : BroadcastReceiver() {
         val builder = Notification.Builder(context)
         val notification =
             builder.setContentTitle(intent.getStringExtra(AddEditDoesActivity.EXTRA_TITLE))
-                .setContentText("Do it Now MORON!!!")
-                .setTicker("New Task is Due!")
+                .setContentText("New task is due")
+                .setTicker("Tap to stop the vibration")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setOngoing(true)
                 .build()
 
         val a = longArrayOf(100, 1000, 1000)
         val vibrator =
+            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         // Vibrate for 10000 milliseconds
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
