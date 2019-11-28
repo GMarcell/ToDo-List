@@ -19,6 +19,6 @@ Watch [this video](https://drive.google.com/open?id=1YZess1O6kT3hk0Z0cAQTwTqmKLV
 <!-- to do -->
 
 ## Contributors
-- Grand Marcell
-- Farrell Nathaniel
+- [Grand Marcell](https://github.com/GMarcell)
+- [Farrell Nathaniel](https://github.com/GMarcell)
 
