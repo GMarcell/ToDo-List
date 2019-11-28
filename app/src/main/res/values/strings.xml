@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ToDo List</string>
+    <string name="notif_inst">Solve the equation in order to stop the alarm.</string>
 </resources>

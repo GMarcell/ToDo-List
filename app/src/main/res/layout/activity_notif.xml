@@ -18,7 +18,7 @@
         android:layout_x="133dp"
         android:layout_y="424dp"
         android:background="@drawable/bgbtncreate"
-        android:text="kill vibrate"
+        android:text="Submit Answer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,7 +47,7 @@
         android:layout_x="99dp"
         android:layout_y="324dp"
         android:ems="10"
-        android:hint="Answer"
+        android:hint="Solution"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/kill"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="If Wou Want to Kill the Vibration, You Must Solve this Equation"
+        android:text="@string/notif_inst"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
