@@ -15,6 +15,10 @@ To run the application, you can either just install the .apk or run the app dire
 ## Demonstration
 Watch [this video](https://drive.google.com/open?id=1YZess1O6kT3hk0Z0cAQTwTqmKLVI_Lc_) to see how it works.
 
+## Current Bugs
+<!-- to do -->
+
 ## Contributors
 - Grand Marcell
 - Farrell Nathaniel
+
