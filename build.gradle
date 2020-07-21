@@ -9,6 +9,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.novoda:bintray-release:0.8.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,6 +22,15 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+ext {
+    compileSdk = 25
+    buildTools = "25.0.2"
+    minSdk = 14
+    targetSdk = 25
+
+    supportLibrary = "25.2.0"
 }
 
 task clean(type: Delete) {

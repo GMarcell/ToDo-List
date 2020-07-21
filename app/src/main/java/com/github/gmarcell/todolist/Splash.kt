@@ -19,7 +19,7 @@ class Splash : AppCompatActivity() {
             logo2.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_out))
             Handler().postDelayed({
                 logo2.visibility = View.GONE
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, FingerprintAct::class.java))
                 finish()
             }, 500)
         }, 1500)

@@ -1,7 +1,6 @@
 package com.github.gmarcell.todolist.service
 
 import android.annotation.SuppressLint
-import android.app.Notification
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder

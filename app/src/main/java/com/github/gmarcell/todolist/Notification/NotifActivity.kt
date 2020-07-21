@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.gmarcell.todolist.AddEditDoesActivity
 import com.github.gmarcell.todolist.MainActivity
 import com.github.gmarcell.todolist.R
-import com.github.gmarcell.todolist.data.Does
 import kotlinx.android.synthetic.main.activity_notif.*
 import kotlin.random.Random
 
@@ -25,20 +24,30 @@ class NotifActivity : AppCompatActivity() {
         setContentView(R.layout.activity_notif)
 
         val v = this.applicationContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        val random1 = Random.nextInt(0, 99)
-        val random2 = Random.nextInt(0, 99)
-        val random3 = Random.nextInt(0, 99)
+        var random1 = Random.nextInt(0, 99)
+        var random2 = Random.nextInt(0, 99)
+        var random3 = Random.nextInt(0, 99)
 
         val titletext = findViewById<TextView>(R.id.Titletext)
         val desctext = findViewById<TextView>(R.id.Desctext)
         val intent =intent.extras
+
         val title = intent.getString(AddEditDoesActivity.EXTRA_TITLE)
         val desc = intent.getString(AddEditDoesActivity.EXTRA_DESCRIPTION)
         titletext.text = title
         desctext.text = desc
 
-        answer = random1 + random2 - random3
-        question.text = "$random1 + $random2 - $random3"
+        while (true){
+            if(random1 + random2 < random3){
+                random1 = Random.nextInt(0, 99)
+                random2 = Random.nextInt(0, 99)
+                random3 = Random.nextInt(0, 99)
+            }else{
+                answer = random1 + random2 - random3
+                question.text = "$random1 + $random2 - $random3"
+                break
+            }
+        }
 
         kill.setOnClickListener {
             if (userAns.text.toString() == answer.toString()){

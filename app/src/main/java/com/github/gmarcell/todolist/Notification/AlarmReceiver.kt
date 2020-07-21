@@ -9,17 +9,16 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import com.github.gmarcell.todolist.AddEditDoesActivity
 import com.github.gmarcell.todolist.R
-import com.github.gmarcell.todolist.service.sampleservice
 
 
 @Suppress("DEPRECATION", "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        val notificationIntent = Intent(context, NotifActivity::class.java)
+        val notificationIntent = Intent(context, KillChoice::class.java)
         notificationIntent.putExtras(intent)
 
         val stackBuilder = TaskStackBuilder.create(context)
-        stackBuilder.addParentStack(NotifActivity::class.java)
+        stackBuilder.addParentStack(KillChoice::class.java)
         stackBuilder.addNextIntent(notificationIntent)
 
         val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)

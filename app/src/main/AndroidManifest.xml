@@ -6,16 +6,27 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <meta-data
+        android:name="com.google.android.gms.vision.DEPENDENCIES"
+        android:value="face" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".notification.NotifActivity"></activity>
+        <activity android:name=".notification.KillChoice" />
+        <activity android:name=".notification.DetectFace" />
+        <activity android:name=".FingerprintAct" />
+        <activity android:name=".notification.NotifActivity" />
         <activity
             android:name=".Splash"
             android:theme="@style/AppTheme.SplashScreen">
@@ -33,7 +44,8 @@
             android:parentActivityName=".MainActivity" />
 
         <receiver android:name=".notification.AlarmReceiver" />
-        <service android:name=".service.sampleservice"/>
+
+        <service android:name=".service.sampleservice" />
     </application>
 
 </manifest>
